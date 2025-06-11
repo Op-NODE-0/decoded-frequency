@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste de Alinhamento - Frequência Desalinhada</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      background-color: #0d0d0d;
+      color: #00ffcc;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      color: #00ffff;
+    }
+    .question {
+      margin-bottom: 2rem;
+    }
+    .question p {
+      font-weight: bold;
+    }
+    label {
+      display: block;
+      margin-left: 1rem;
+      cursor: pointer;
+    }
+    button {
+      background-color: #00ffff;
+      color: #000;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 2rem;
+    }
+    #result {
+      margin-top: 3rem;
+      font-size: 1.2rem;
+      background: #111;
+      padding: 1rem;
+      border: 1px solid #00ffcc;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧠 Teste de Alinhamento</h1>
+  <p>Responda as perguntas abaixo e descubra sua função na resistência.</p>
+
+  <form id="alignmentForm">
+    <div class="question">
+      <p>1. Você vê uma mensagem em um outdoor que some imediatamente. O que faz?</p>
+      <label><input type="radio" name="q1" value="A"> Escrevo o que vi num caderno.</label>
+      <label><input type="radio" name="q1" value="B"> Traço um mapa da área.</label>
+      <label><input type="radio" name="q1" value="C"> Tento lembrar se já vi em sonho.</label>
+      <label><input type="radio" name="q1" value="D"> Ignoro, parecia bug.</label>
+      <label><input type="radio" name="q1" value="E"> Tiro uma foto e posto.</label>
+    </div>
+
+    <div class="question">
+      <p>2. Um estranho diz: “Você está prestes a acordar”. O que você faz?</p>
+      <label><input type="radio" name="q2" value="A"> Gravo a voz dele.</label>
+      <label><input type="radio" name="q2" value="B"> Faço perguntas diretas.</label>
+      <label><input type="radio" name="q2" value="C"> Sinto que já vivi isso.</label>
+      <label><input type="radio" name="q2" value="D"> Dou risada.</label>
+      <label><input type="radio" name="q2" value="E"> Pergunto quem mais sabe disso.</label>
+    </div>
+
+    <div class="question">
+      <p>3. Um áudio invertido diz seu nome. Isso significa:</p>
+      <label><input type="radio" name="q3" value="A"> Estão me vigiando.</label>
+      <label><input type="radio" name="q3" value="B"> Preciso rastrear a origem.</label>
+      <label><input type="radio" name="q3" value="C"> Isso já aconteceu antes.</label>
+      <label><input type="radio" name="q3" value="D"> Bug de app.</label>
+      <label><input type="radio" name="q3" value="E"> Alguém quer me recrutar.</label>
+    </div>
+
+    <div class="question">
+      <p>4. Um símbolo aparece na janela após um sonho. Você:</p>
+      <label><input type="radio" name="q4" value="A"> Procuro o símbolo em vídeos antigos.</label>
+      <label><input type="radio" name="q4" value="B"> Saio e procuro mais sinais.</label>
+      <label><input type="radio" name="q4" value="C"> Desenho o sonho.</label>
+      <label><input type="radio" name="q4" value="D"> Limpo e sigo o dia.</label>
+      <label><input type="radio" name="q4" value="E"> Mando para um fórum secreto.</label>
+    </div>
+
+    <button type="button" onclick="calculateResult()">Descobrir Classe</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    function calculateResult() {
+      const form = document.getElementById('alignmentForm');
+      const answers = ['q1', 'q2', 'q3', 'q4'].map(q => form[q].value);
+      const counts = {};
+      answers.forEach(letter => {
+        counts[letter] = (counts[letter] || 0) + 1;
+      });
+      let highest = Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
+
+      let resultText = '';
+      switch (highest) {
+        case 'A':
+          resultText = "🛰️ <b>OBSERVADOR</b><br>Você percebe o que ninguém vê. Glitchs, padrões, ruídos. Você é a retina da resistência.";
+          break;
+        case 'B':
+          resultText = "🗺️ <b>CARTÓGRAFO MENTAL</b><br>Você mapeia a interferência pelo espaço. Cada rua é um fragmento da verdade.";
+          break;
+        case 'C':
+          resultText = "🧠 <b>DESPERTO</b><br>Você já foi tocado pelo Sinal. Sua mente é um portal instável e precioso.";
+          break;
+        case 'D':
+          resultText = "🎒 <b>TURISTA CODIFICADO</b><br>Você acha que está só de passagem. Mas já foi contaminado.";
+          break;
+        case 'E':
+          resultText = "🔐 <b>PORTADOR DA CHAVE</b><br>Você carrega algo único. Talvez o início da libertação, talvez o fim do jogo.";
+          break;
+      }
+      document.getElementById('result').innerHTML = resultText;
+    }
+  </script>
+</body>
+</html>
